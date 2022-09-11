@@ -1,16 +1,16 @@
 
 //save tasks objects
-function saveTasks(tasks){
+function saveTasks(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 //load tasks from save
-function loadTasks (tasks) {
-    let timeSlices = $('textarea');
+function loadTasks(tasks) {
+    let timeSegments = $('textarea');
     let i = 0;
-    //console.log(timeSlices);
-    for(const key in tasks){
-        timeSlices[i].value = tasks[key];
+    console.log(timeSegments);
+    for (const key in tasks) {
+        timeSegments[i].value = tasks[key];
         // console.log(timeSlices[i]);
         // console.log(tasks[key]);
         i++;
@@ -18,22 +18,26 @@ function loadTasks (tasks) {
 }
 
 
-function drawTime (time) {
+function drawTime(time) {
     $('#currentDay').text(`Current day is ${time.format('DD/MM/YYYY')}`)
 }
 
-function updateBarColours (time){
+function updateBarColours() {
+    let now = parseInt(moment().format('H'));
+    //console.log(`Now hour is ${now} and is ${typeof(now)}`)
 
+    
+    
 }
 
 
 
 // Save handler function
-function handleSaveEvent (event) {
-    
+function handleSaveEvent(event) {
+
     let tasks = JSON.parse(localStorage.getItem('tasks'))
-    
-    switch (event.target.id){
+
+    switch (event.target.id) {
         case 'save9':
             // save 9am
             tasks.tasks9 = $('#time9').val();
@@ -82,15 +86,11 @@ function handleSaveEvent (event) {
 
     //save tasks
     saveTasks(tasks);
-        
+
 }
 
 
-
-
-
-
-function init () {
+function init() {
 
     //get time - now
     let now = moment();
@@ -98,8 +98,7 @@ function init () {
     // load from local storage
     let tasks = JSON.parse(localStorage.getItem('tasks'));
 
-    if (tasks !== null)
-    {
+    if (tasks !== null) {
         loadTasks(tasks);
     } else {
         let structure = {
@@ -117,9 +116,10 @@ function init () {
         saveTasks(structure);
     }
 
+    //Draw the current date
     drawTime(now);
 
-
+    setInterval(updateBarColours, 60000);
 
     // colour the bars based on past present and future
     // add event listener to container
@@ -130,5 +130,5 @@ function init () {
 
 
 
-init ();
+init();
 
