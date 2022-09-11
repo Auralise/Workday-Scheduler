@@ -1,14 +1,34 @@
 
+//save tasks objects
 function saveTasks(tasks){
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+//load tasks from save
 function loadTasks (tasks) {
+    let timeSlices = $('textarea');
+    let i = 0;
+    //console.log(timeSlices);
+    for(const key in tasks){
+        timeSlices[i].value = tasks[key];
+        // console.log(timeSlices[i]);
+        // console.log(tasks[key]);
+        i++;
+    }
+}
+
+
+function drawTime (time) {
+    $('#currentDay').text(`Current day is ${time.format('DD/MM/YYYY')}`)
+}
+
+function updateBarColours (time){
 
 }
 
 
 
+// Save handler function
 function handleSaveEvent (event) {
     
     let tasks = JSON.parse(localStorage.getItem('tasks'))
@@ -97,6 +117,7 @@ function init () {
         saveTasks(structure);
     }
 
+    drawTime(now);
 
 
 
