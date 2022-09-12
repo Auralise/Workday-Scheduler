@@ -8,7 +8,7 @@ function saveTasks(tasks) {
 function loadTasks(tasks) {
     let timeSegments = $('textarea');
     let i = 0;
-    console.log(timeSegments);
+    //console.log(timeSegments);
     for (const key in tasks) {
         timeSegments[i].value = tasks[key];
         // console.log(timeSlices[i]);
@@ -25,7 +25,18 @@ function drawTime(time) {
 function updateBarColours() {
     let now = parseInt(moment().format('H'));
     //console.log(`Now hour is ${now} and is ${typeof(now)}`)
+    $('textarea').addClass('past');
 
+    $('textarea').each(()=>{
+        if(parseInt($(this).attr('data-hour')) === now){
+            $(this).removeClass('past');
+            $(this).addClass('present');
+        }
+        else if(parseInt($(this).attr('data-hour')) > now){
+            $(this).removeClass('past');
+            $(this).addClass('future')
+        }
+    })
     
     
 }
@@ -119,6 +130,10 @@ function init() {
     //Draw the current date
     drawTime(now);
 
+    //initialise bar colours
+    updateBarColours();
+
+    //update colours every minute
     setInterval(updateBarColours, 60000);
 
     // colour the bars based on past present and future
