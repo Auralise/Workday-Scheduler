@@ -25,9 +25,12 @@ function drawTime(time) {
 function updateBarColours() {
     let now = parseInt(moment().format('H'));
     //console.log(`Now hour is ${now} and is ${typeof(now)}`)
+
+    //make all bars grey
     $('textarea').addClass('past');
 
-    $('textarea').each(()=>{
+    //iterate over time and set the colours. 
+    $('textarea').each(function (i) {
         if(parseInt($(this).attr('data-hour')) === now){
             $(this).removeClass('past');
             $(this).addClass('present');
