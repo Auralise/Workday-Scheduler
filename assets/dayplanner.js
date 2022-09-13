@@ -136,9 +136,6 @@ function init() {
     //initialise bar colours
     updateBarColours();
 
-    //update colours every minute
-    setInterval(updateBarColours, 60000);
-
     // colour the bars based on past present and future
     // add event listener to container
     $('#time-container').on('click', handleSaveEvent);
