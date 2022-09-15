@@ -2,7 +2,7 @@
 Bootcamp Week 5 - jQuery and Bootstrap powered Day planner
 
 ## Purpose
-This is a workday scheduler program designed to allow you to create items that are saved for each hour period of the working day (9am-5pm). 
+This is a workday scheduler program designed to allow you to create items that are saved for each hour period of the working day (9am-5pm). The application will also highlight the current time segment in Red and colour the future segments with Green and the past segments with Grey. 
 
 ## Built with
 - HTML
